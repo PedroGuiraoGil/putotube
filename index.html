@@ -125,10 +125,24 @@
       return (match && match[2].length === 11) ? match[2] : null;
     }
 
-    function getYouTubeThumbnail(url) {
+    function getYouTubeThumbnail(url, fallbackTitle = "") {
       const videoId = getYouTubeId(url);
-      return videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : 
-        "https://via.placeholder.com/320x180/cccccc/666666?text=Sin+Imagen";
+      if (videoId && videoId !== "dQw4w9WgXcQ") {
+        return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+      }
+      
+      // Para videos con IDs genéricos o sin ID, generar un placeholder único
+      const colors = ['3498db', '2ecc71', 'e74c3c', 'f39c12', '9b59b6', '1abc9c', 'e67e22', '34495e'];
+      const randomColor = colors[Math.abs(fallbackTitle.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % colors.length];
+      
+      // Limpiar el título para evitar caracteres problemáticos
+      const cleanTitle = fallbackTitle
+        .replace(/[^\w\s]/g, '') // Remover caracteres especiales
+        .substring(0, 20) // Limitar longitud
+        .trim()
+        .replace(/\s+/g, '+'); // Reemplazar espacios con +
+      
+      return `https://via.placeholder.com/320x180/${randomColor}/ffffff?text=${cleanTitle}`;
     }
 
     const videos = [
@@ -186,182 +200,182 @@
       // Videos adicionales de CIENCIA
       {
         title: "¿Cómo funciona realmente la GRAVEDAD? 🌌",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=XRr1kaXKBsU",
         date: "2024-07-15",
         category: "ciencia",
         channel: "Física Fácil"
       },
       {
         title: "Los Misterios del Universo Cuántico",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=7u5BGnz8zPE",
         date: "2024-05-12",
         category: "ciencia",
         channel: "Cosmos Digital"
       },
       {
         title: "¿Qué es la MATERIA OSCURA? 🕳️",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=yWO-cvGETRQ",
         date: "2024-06-20",
         category: "ciencia",
         channel: "CienciaPopular"
       },
       {
         title: "El Experimento más PELIGROSO de la Historia",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=Qhg_6zOKPTk",
         date: "2024-04-08",
         category: "ciencia",
         channel: "Experimentos Extremos"
       },
       {
         title: "¿Podremos VIAJAR EN EL TIEMPO? ⏰",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=2Uzytrooz44",
         date: "2024-03-25",
         category: "ciencia",
         channel: "Teoría Científica"
       },
       {
         title: "La ECUACIÓN más BELLA del Universo: E=mc²",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=hW7DW9NIO9M",
         date: "2024-02-14",
         category: "ciencia",
         channel: "Einstein Explica"
       },
       {
         title: "¿Cómo se FORMAN los CRISTALES? 💎",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=t_uyc9uq1bk",
         date: "2024-01-30",
         category: "ciencia",
         channel: "Química Divertida"
       },
       {
         title: "Los ELEMENTOS más RAROS de la TABLA PERIÓDICA",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=YOyTxBvAhNs",
         date: "2023-12-18",
         category: "ciencia",
         channel: "Química Extrema"
       },
       {
         title: "¿Qué pasa si DIVIDES por CERO? ∞",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=BRRolKTlF6Q",
         date: "2023-11-22",
         category: "ciencia",
         channel: "Matemáticas Locas"
       },
       {
         title: "El ADN: El CÓDIGO de la VIDA 🧬",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=8m6hHRlKwxY",
         date: "2023-10-10",
         category: "ciencia",
         channel: "Biología Moderna"
       },
       {
         title: "¿Cómo FUNCIONAN las VACUNAS? 💉",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=zBkVCpbNnkU",
         date: "2023-09-05",
         category: "ciencia",
         channel: "Medicina Explicada"
       },
       {
         title: "Los NÚMEROS PRIMOS: Misterio sin RESOLVER",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=M7kEpw1tn50",
         date: "2023-08-15",
         category: "ciencia",
         channel: "Matemáticas Puras"
       },
       {
         title: "¿Por qué el HIELO FLOTA? 🧊",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=UukHhYIBl8I",
         date: "2023-07-28",
         category: "ciencia",
         channel: "Física Cotidiana"
       },
       {
         title: "La VELOCIDAD de la LUZ: ¿Por qué es CONSTANTE?",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=pTn6Ewhb2fY",
         date: "2023-06-12",
         category: "ciencia",
         channel: "Relatividad Fácil"
       },
       {
         title: "¿Cómo se MIDE la EDAD del UNIVERSO? 📏",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=TBikbn5XJhg",
         date: "2023-05-20",
         category: "ciencia",
         channel: "Cosmología Actual"
       },
       {
         title: "Los VIRUS: ¿Están VIVOS? 🦠",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=YS7vsBgWszI",
         date: "2023-04-18",
         category: "ciencia",
         channel: "Microbiología Hoy"
       },
       {
         title: "¿Qué es la ENTROPÍA? 🔥",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=YM-uykVfq_E",
         date: "2023-03-22",
         category: "ciencia",
         channel: "Termodinámica Simple"
       },
       {
         title: "El CEREBRO HUMANO: La MÁQUINA más COMPLEJA",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=ba-HI9M1WZE",
         date: "2023-02-15",
         category: "ciencia",
         channel: "Neurociencia Fascinante"
       },
       {
         title: "¿Cómo FUNCIONA la ELECTRICIDAD? ⚡",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=mc979OhitAg",
         date: "2023-01-08",
         category: "ciencia",
         channel: "Física Aplicada"
       },
       {
         title: "Los FRACTALES: Geometría INFINITA 🌀",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=ovJcsL7vyrk",
         date: "2022-12-20",
         category: "ciencia",
         channel: "Matemáticas Visuales"
       },
       {
         title: "¿Por qué ENVEJECEMOS? 👴",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=GoJsr4IwCm4",
         date: "2022-11-25",
         category: "ciencia",
         channel: "Biología del Envejecimiento"
       },
       {
         title: "La TABLA PERIÓDICA: Historia y SECRETOS",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=rz4Dd1I_fX0",
         date: "2022-10-30",
         category: "ciencia",
         channel: "Química Histórica"
       },
       {
         title: "¿Cómo se FORMAN los DIAMANTES? 💍",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=n_wkO4hk07o",
         date: "2022-09-14",
         category: "ciencia",
         channel: "Geología Sorprendente"
       },
       {
         title: "Los AGUJEROS de GUSANO: ¿Son POSIBLES? 🕳️",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=7CAyMGfKEOE",
         date: "2022-08-18",
         category: "ciencia",
         channel: "Física Teórica"
       },
       {
         title: "¿Qué es la CONCIENCIA? 🧠",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=H6u0VBqNBQ8",
         date: "2022-07-22",
         category: "ciencia",
         channel: "Filosofía Científica"
       },
       {
         title: "La EVOLUCIÓN: Evidencias IRREFUTABLES 🦕",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=hOfRN0KihOU",
         date: "2022-06-16",
         category: "ciencia",
         channel: "Evolución Explicada"
@@ -370,35 +384,35 @@
       // Videos de ASTRONOMÍA
       {
         title: "La Nueva Era de los Telescopios Espaciales",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=mGueIGWYiMc",
         date: "2024-01-15",
         category: "astronomia",
         channel: "Ciencia Plus"
       },
       {
         title: "MARTE: ¿El FUTURO HOGAR de la HUMANIDAD? 🔴",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=t9c-CPep4Vw",
         date: "2024-07-10",
         category: "astronomia",
         channel: "Exploración Espacial"
       },
       {
         title: "Los EXOPLANETAS más EXTRAÑOS del UNIVERSO 🪐",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=dEOmZ2VrSk8",
         date: "2024-06-25",
         category: "astronomia",
         channel: "Mundos Lejanos"
       },
       {
         title: "¿Qué PASARÍA si el SOL se APAGARA? ☀️",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=VvKZQkVgHYI",
         date: "2024-05-18",
         category: "astronomia",
         channel: "Catástrofes Cósmicas"
       },
       {
         title: "La VÍA LÁCTEA: Nuestro HOGAR GALÁCTICO 🌌",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        url: "https://www.youtube.com/watch?v=ZL4yYHdDSWs",
         date: "2024-04-22",
         category: "astronomia",
         channel: "Galaxias Increíbles"
@@ -981,7 +995,7 @@
         const card = document.createElement("div");
         card.className = "video-card row shadow-sm bg-white p-3 rounded-3 align-items-center mx-1 mb-3";
 
-        const thumbnail = getYouTubeThumbnail(video.url);
+        const thumbnail = getYouTubeThumbnail(video.url, video.title);
         const categoryBadge = `<span class="badge bg-${getCategoryColor(video.category)} category-badge">${getCategoryName(video.category)}</span>`;
 
         card.innerHTML = `
