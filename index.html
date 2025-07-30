@@ -131,18 +131,20 @@
         return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       }
       
-      // Para videos con IDs genéricos o sin ID, generar un placeholder único
-      const colors = ['3498db', '2ecc71', 'e74c3c', 'f39c12', '9b59b6', '1abc9c', 'e67e22', '34495e'];
-      const randomColor = colors[Math.abs(fallbackTitle.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % colors.length];
+      // Para videos sin ID real, generar un placeholder más confiable
+      const colors = ['4285f4', '34a853', 'ea4335', 'fbbc04', '9c27b0', '00bcd4', 'ff9800', '607d8b'];
+      const colorIndex = Math.abs(fallbackTitle.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % colors.length;
+      const bgColor = colors[colorIndex];
       
-      // Limpiar el título para evitar caracteres problemáticos
+      // Crear un título más limpio y corto
       const cleanTitle = fallbackTitle
-        .replace(/[^\w\s]/g, '') // Remover caracteres especiales
-        .substring(0, 20) // Limitar longitud
+        .replace(/[^\w\sáéíóúñü]/gi, '') // Mantener solo letras, números y espacios (incluyendo acentos)
+        .substring(0, 25)
         .trim()
-        .replace(/\s+/g, '+'); // Reemplazar espacios con +
+        .replace(/\s+/g, '%20'); // Codificar espacios correctamente
       
-      return `https://via.placeholder.com/320x180/${randomColor}/ffffff?text=${cleanTitle}`;
+      // Usar un servicio de placeholder más confiable
+      return `https://placehold.co/320x180/${bgColor}/white?text=${cleanTitle}&font=roboto`;
     }
 
     const videos = [
@@ -1001,7 +1003,11 @@
         card.innerHTML = `
           <div class="col-md-4 col-lg-3">
             <a href="${video.url}" target="_blank" rel="noopener noreferrer">
-              <img src="${thumbnail}" class="video-thumbnail" alt="Miniatura de ${video.title}" loading="lazy">
+              <img src="${thumbnail}" 
+                   class="video-thumbnail" 
+                   alt="Miniatura de ${video.title}" 
+                   loading="lazy"
+                   onerror="this.src='https://placehold.co/320x180/6c757d/white?text=Video&font=roboto'; this.onerror=null;">
             </a>
           </div>
           <div class="col-md-8 col-lg-9 video-card-body">
