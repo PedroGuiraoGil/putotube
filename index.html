@@ -2,89 +2,121 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vídeos filtrados de ciencia y ufología</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { background-color: #f4f4f4; padding: 2rem; }
-    h1 { text-align: center; margin-bottom: 2rem; }
-    .video-card { margin-bottom: 1.5rem; }
-    .video-thumbnail { width: 100%; border-radius: 8px; }
-    .category-btn { margin: 0.3rem; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vídeos filtrados de ciencia y ufología</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f4f4f4; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: 2rem; }
+    .video-card { margin-bottom: 1.5rem; }
+    .video-thumbnail { width: 100%; border-radius: 8px; }
+    .category-btn { margin: 0.3rem; }
+  </style>
 </head>
 
 <body>
-  <h1>Vídeos recientes de ciencia y ufología</h1>
+  <h1>Vídeos recientes de ciencia y ufología</h1>
 
-  <div class="d-flex flex-wrap justify-content-center mb-4">
-    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('ciencia')">Ciencia</button>
-    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('astronomia')">Astronomía</button>
-    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('ufologia')">Ufología</button>
-    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('tecnologia')">Tecnología</button>
-    <button class="btn btn-outline-secondary category-btn" onclick="filterVideos('todas')">Todas</button>
-  </div>
+  <div class="d-flex flex-wrap justify-content-center mb-4">
+    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('ciencia')">Ciencia</button>
+    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('astronomia')">Astronomía</button>
+    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('ufologia')">Ufología</button>
+    <button class="btn btn-outline-primary category-btn" onclick="filterVideos('tecnologia')">Tecnología</button>
+    <button class="btn btn-outline-secondary category-btn" onclick="filterVideos('todas')">Todas</button>
+  </div>
 
-  <div id="video-list" class="container"></div>
+  <div id="video-list" class="container"></div>
 
-  <script>
-    const videos = [
+  <script>
+    const videos = [
+      {
+        title: "JAMES WEBB DESCUBRE 6 GALAXIAS INEXPLICABLES 🛰",
+        url: "http://www.youtube.com/watch?v=Uh1L75Wq52A",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2023-02-27",
+        category: "astronomia",
+        channel: "Doctor Fisión"
+      },
+      {
+        title: "¿Qué dice exactamente el informe del Pentágono sobre los OVNIS?",
+        url: "http://www.youtube.com/watch?v=5d00s2I0-jA",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2021-07-01",
+        category: "ufologia",
+        channel: "El Confidencial"
+      },
+      {
+        title: "FUSIÓN NUCLEAR: ¡¡Vamos a crear un sol en la tierra!!☀️",
+        url: "http://www.youtube.com/watch?v=GyjVpuBxQ9o",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2020-12-04",
+        category: "ciencia",
+        channel: "Date un Vlog"
+      },
       {
-        title: "El nuevo hallazgo del telescopio James Webb explicado",
-        url: "https://www.youtube.com/watch?v=XXXXXXXXXXX",
-        thumbnail: "https://img.youtube.com/vi/XXXXXXXXXXX/hqdefault.jpg",
-        date: "2025-07-30",
-        category: "astronomia",
-        channel: "QuantumFracture"
-      },
-      {
-        title: "¿Es real lo que el Pentágono ha dicho sobre los ovnis?",
-        url: "https://www.youtube.com/watch?v=YYYYYYYYYYY",
-        thumbnail: "https://img.youtube.com/vi/YYYYYYYYYYY/hqdefault.jpg",
-        date: "2025-07-29",
-        category: "ufologia",
-        channel: "The Black Vault"
-      },
-      {
-        title: "La fusión nuclear: el futuro de la energía",
-        url: "https://www.youtube.com/watch?v=ZZZZZZZZZZZ",
-        thumbnail: "https://img.youtube.com/vi/ZZZZZZZZZZZ/hqdefault.jpg",
-        date: "2025-07-28",
+        title: "Las 20 mentiras de astronomía y ciencia que aún crees...",
+        url: "http://www.youtube.com/watch?v=QylcH69Lw0w",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2021-03-29",
         category: "ciencia",
-        channel: "Date un Vlog"
+        channel: "Astronomiaweb"
+      },
+      {
+        title: "El Poder de la FÍSICA",
+        url: "http://www.youtube.com/watch?v=eVTI2DG4osE",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2024-10-16",
+        category: "ciencia",
+        channel: "visuesp"
+      },
+      {
+        title: "TOP: Los 7 OVNIS MÁS INCREÍBLES jamás captados",
+        url: "http://www.youtube.com/watch?v=-Qhw3CbWrVY",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2023-06-17",
+        category: "ufologia",
+        channel: "DrossRotzank"
+      },
+      {
+        title: "Más cerca cada día 👽 6 Videos OVNI Increíbles",
+        url: "http://www.youtube.com/watch?v=81DL-OBSqyE",
+        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        date: "2021-05-04",
+        category: "ufologia",
+        channel: "nOone Channel"
       }
-    ];
+    ];
 
-    function filterVideos(category) {
-      const list = document.getElementById("video-list");
-      list.innerHTML = "";
+    function filterVideos(category) {
+      const list = document.getElementById("video-list");
+      list.innerHTML = "";
 
-      const filtered = category === 'todas' ? videos : videos.filter(v => v.category === category);
+      const filtered = category === 'todas' ? videos : videos.filter(v => v.category === category);
 
-      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      filtered.forEach(video => {
-        const card = document.createElement("div");
-        card.className = "video-card row shadow bg-white p-3 rounded";
-        card.innerHTML = `
-          <div class="col-md-4">
-            <a href="${video.url}" target="_blank">
-              <img src="${video.thumbnail}" class="video-thumbnail" alt="Miniatura">
-            </a>
-          </div>
-          <div class="col-md-8">
-            <h5><a href="${video.url}" target="_blank">${video.title}</a></h5>
-            <p class="text-muted">${video.channel} – Publicado el ${video.date}</p>
-          </div>
-        `;
-        list.appendChild(card);
-      });
-    }
+      filtered.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "video-card row shadow bg-white p-3 rounded";
+        card.innerHTML = `
+          <div class="col-md-4">
+            <a href="${video.url}" target="_blank">
+              <img src="${video.thumbnail}" class="video-thumbnail" alt="Miniatura">
+            </a>
+          </div>
+          <div class="col-md-8">
+            <h5><a href="${video.url}" target="_blank">${video.title}</a></h5>
+            <p class="text-muted">${video.channel} – Publicado el ${video.date}</p>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
 
-    // Mostrar todos por defecto
-    filterVideos('todas');
-  </script>
+    // Mostrar todos por defecto
+    filterVideos('todas');
+  </script>
 </body>
 
 </html>
