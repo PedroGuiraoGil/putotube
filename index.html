@@ -10,8 +10,21 @@
     body { background-color: #f4f4f4; padding: 2rem; }
     h1 { text-align: center; margin-bottom: 2rem; }
     .video-card { margin-bottom: 1.5rem; }
-    .video-thumbnail { width: 100%; border-radius: 8px; }
+    .video-thumbnail { 
+        width: 100%; 
+        height: 100%;
+        min-height: 150px;
+        object-fit: cover;
+        border-radius: 8px; 
+    }
     .category-btn { margin: 0.3rem; }
+    .video-card-body h5 a {
+        text-decoration: none;
+        color: #212529;
+    }
+    .video-card-body h5 a:hover {
+        color: #0d6efd;
+    }
   </style>
 </head>
 
@@ -29,11 +42,14 @@
   <div id="video-list" class="container"></div>
 
   <script>
+    // Usamos una imagen SVG como placeholder para que siempre funcione
+    const placeholderThumbnail = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23cccccc%22%3E%3C%2Frect%3E%3C%2Fsvg%3E";
+
     const videos = [
       {
         title: "JAMES WEBB DESCUBRE 6 GALAXIAS INEXPLICABLES 🛰",
         url: "http://www.youtube.com/watch?v=Uh1L75Wq52A",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2023-02-27",
         category: "astronomia",
         channel: "Doctor Fisión"
@@ -41,7 +57,7 @@
       {
         title: "¿Qué dice exactamente el informe del Pentágono sobre los OVNIS?",
         url: "http://www.youtube.com/watch?v=5d00s2I0-jA",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2021-07-01",
         category: "ufologia",
         channel: "El Confidencial"
@@ -49,7 +65,7 @@
       {
         title: "FUSIÓN NUCLEAR: ¡¡Vamos a crear un sol en la tierra!!☀️",
         url: "http://www.youtube.com/watch?v=GyjVpuBxQ9o",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2020-12-04",
         category: "ciencia",
         channel: "Date un Vlog"
@@ -57,7 +73,7 @@
       {
         title: "Las 20 mentiras de astronomía y ciencia que aún crees...",
         url: "http://www.youtube.com/watch?v=QylcH69Lw0w",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2021-03-29",
         category: "ciencia",
         channel: "Astronomiaweb"
@@ -65,7 +81,7 @@
       {
         title: "El Poder de la FÍSICA",
         url: "http://www.youtube.com/watch?v=eVTI2DG4osE",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2024-10-16",
         category: "ciencia",
         channel: "visuesp"
@@ -73,7 +89,7 @@
       {
         title: "TOP: Los 7 OVNIS MÁS INCREÍBLES jamás captados",
         url: "http://www.youtube.com/watch?v=-Qhw3CbWrVY",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2023-06-17",
         category: "ufologia",
         channel: "DrossRotzank"
@@ -81,7 +97,7 @@
       {
         title: "Más cerca cada día 👽 6 Videos OVNI Increíbles",
         url: "http://www.youtube.com/watch?v=81DL-OBSqyE",
-        thumbnail: "https://via.placeholder.com/150", // Miniatura de marcador de posición
+        thumbnail: placeholderThumbnail,
         date: "2021-05-04",
         category: "ufologia",
         channel: "nOone Channel"
@@ -98,16 +114,18 @@
 
       filtered.forEach(video => {
         const card = document.createElement("div");
-        card.className = "video-card row shadow bg-white p-3 rounded";
+        card.className = "video-card row shadow bg-white p-3 rounded align-items-center";
+
+        // ESTA ES LA ESTRUCTURA CORRECTA PARA LA TARJETA
         card.innerHTML = `
           <div class="col-md-4">
             <a href="${video.url}" target="_blank">
-              <img src="${video.thumbnail}" class="video-thumbnail" alt="Miniatura">
+              <img src="${video.thumbnail}" class="video-thumbnail" alt="Miniatura de ${video.title}">
             </a>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-8 video-card-body">
             <h5><a href="${video.url}" target="_blank">${video.title}</a></h5>
-            <p class="text-muted">${video.channel} – Publicado el ${video.date}</p>
+            <p class="text-muted mb-0">${video.channel} – Publicado el ${video.date}</p>
           </div>
         `;
         list.appendChild(card);
